@@ -53,6 +53,4 @@ jobs:
           K8s_Token: ${{ secrets.K8s_Token }}
         run: |
           # Run function registration 
-          sudo cp needed_cert.cer /usr/local/share/ca-certificates/kube_cert.cer
-          sudo update-ca-certificates
           python scripts/register_workflow.py --workflow-file ${{ github.event.inputs.workflow_file }} 
