@@ -1209,10 +1209,10 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
     s = requests.Session()
 
     if (certificate):
-        with open("./temp.crt", "w") as certFile:
+        with open("./temp.pem", "w") as certFile:
             certFile.write(certificate)
 
-        s.verify = "./temp.crt"
+        #s.verify = "./temp.pem"
 
 
     return_value = True
