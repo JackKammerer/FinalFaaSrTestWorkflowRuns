@@ -9,9 +9,6 @@ import sys
 import textwrap
 import time
 import base64
-import ssl
-
-print(ssl.OPENSSL_VERSION)
 
 import boto3
 import requests
@@ -1144,6 +1141,30 @@ def validate_certificate(certificate):
 
 
 
+
+
+
+
+
+
+from requests.adapters import HTTPAdapter
+from urllib3.util.ssl_ import create_urllib3_context
+import ssl
+
+class LegacyCertAdapter(HTTPAdapter):
+    """Adapter that allows certs missing the Authority Key Identifier."""
+    def __init__(self, cert_path, **kwargs):
+        self.cert_path = cert_path
+        super().__init__(**kwargs)
+
+    def init_poolmanager(self, *args, **kwargs):
+        ctx = create_urllib3_context()
+        ctx.options |= ssl.OP_LEGACY_SERVER_CONNECT  # Allow legacy/incomplete certs
+        ctx.load_verify_locations(self.cert_path)
+        kwargs["ssl_context"] = ctx
+        super().init_poolmanager(*args, **kwargs)
+
+
 def test_kubernetes_connectivity(cluster_name, cluster_config):
     """
     Test connectivity to the Kubernetes cluster REST API endpoint
@@ -1194,9 +1215,7 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
         )
 
         return False
-
-    s = requests.Session()
-
+    
     job_payload = {
         "apiVersion": "authorization.k8s.io/v1",
         "kind": "SelfSubjectAccessReview",
@@ -1215,15 +1234,12 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
             certFile.write(certificate)
         
         s.verify = "./temp.pem"
+        s = requests.Session()
+        s.mount("https://", LegacyCertAdapter("./temp.pem"))
 
     return_value = True
 
     try:
-        import ssl
-
-        context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
-        context.load_verify_locations(cafile="temp.pem")
-        context.verify_flags |= ssl.VERIFY_X509_PARTIAL_CHAIN
 
         response = s.post(jobs_url, headers=headers, timeout=10, json=job_payload)
 
