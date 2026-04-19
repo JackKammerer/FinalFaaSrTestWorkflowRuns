@@ -1223,7 +1223,7 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
             import subprocess
 
             result = subprocess.run(
-                ["openssl", "x509", "-in", "ca.crt", "-text", "-noout"],
+                ["openssl", "x509", "-in", "temp.pem", "-text", "-noout"],
                 capture_output=True,
                 text=True
             )
