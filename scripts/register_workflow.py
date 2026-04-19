@@ -1219,6 +1219,10 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
     return_value = True
 
     try:
+        if (certificate):
+            with open("./temp.pem", "r") as certFile:
+                print(certFile.read())
+
         response = s.post(jobs_url, headers=headers, timeout=10, json=job_payload)
 
         if response.status_code == 200 or response.status_code == 201:
