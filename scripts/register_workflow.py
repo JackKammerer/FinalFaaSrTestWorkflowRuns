@@ -1232,7 +1232,7 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
         with open("./temp.pem", "w") as certFile:
             certFile.write(certificate)
 
-        s.verify = "/etc/ssl/certs/ca-certificates.crt"
+        s.verify = "./temp.pem"
 
 
     return_value = True
