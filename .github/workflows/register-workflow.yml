@@ -53,8 +53,4 @@ jobs:
           K8s_Token: ${{ secrets.K8s_Token }}
         run: |
           # Run function registration
-          sudo cp nrpCert.crt /usr/share/ca-certificates/nrpCert.crt
-          echo 'nrpCert.crt' | sudo tee -a /etc/ca-certificates.conf
-          sudo update-ca-certificates
-          openssl x509 -in nrpCert.crt -noout -text | grep -A3 "Authority Key"
           python scripts/register_workflow.py --workflow-file ${{ github.event.inputs.workflow_file }} 
