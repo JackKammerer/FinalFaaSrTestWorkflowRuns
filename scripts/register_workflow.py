@@ -1212,7 +1212,7 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
         with open("./temp.pem", "w") as certFile:
             certFile.write(certificate)
 
-        s.verify = False#"./temp.pem"
+        #s.verify = "./temp.pem"
 
 
     return_value = True
