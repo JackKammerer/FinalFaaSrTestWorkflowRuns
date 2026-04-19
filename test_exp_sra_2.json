@@ -1,0 +1,571 @@
+{
+    "ComputeServers": {
+        "GH": {
+            "FaaSType": "GitHubActions",
+            "UseSecretStore": true,
+            "UserName": "JackKammerer",
+            "ActionRepoName": "FinalFaaSrTestWorkflowRuns",
+            "Branch": "main"
+        },
+        "K8s": {
+            "FaaSType": "Kubernetes",
+            "Endpoint": "https://67.58.53.148:443",
+            "Namespace": "faasr",
+            "AllowSelfSignedCertificate": true,
+            "SSLCertificate": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNE1ESXhOVEExTWpNek9Wb1hEVEk0TURJeE16QTFNak16T1Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTTZxCm5tNUVSb3FGVHNzWWtJNUExNmZCVTJNbDN6SUpWZnN1dXY3aEpzNk1VMUlCdURuQTJQM0xkaGlpdXFpb0NNamQKRGdwcG92WTVnUVFOZXp1UVo0OGJiQmhac2dWZ1gwK3BUWUlPVjV6ZUo1bGdaclpzWHJsSWZJTHREc3BpcEo0YQpadTRiNnVuVmptSk1LeU4vTHdaRWlvU2d3MXdLRkhlcmF2czA4NHZzQ1F3R2NZNGh4bnhSNzJjdkpjdFFHeHVyCmRnUVNBd2V3U2oycXZWaGJHRzhWU3M3Mms1OU00QlIvMDhrMUxnVmF0alZtYUcvcG9VSnBETTkycVYzTnRwNjcKQUdaRnBNNjhYNHpwSU15NDlDMTNpY0hsZzRGVlNLblNiMUFvWlB0UWUrdGpNMWxTT2FPOWk3U2NxczFzWEdxYwpDazJLUFo3OEUzQUxzMVlpK0swQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFIZ3hmRmwzVkk3eW9Sbzc3M25OOGpEMDhhT1cKQmwxZldORktZQTJhY3ZTZXFsTnk4WGdkaDNMQ3JGVUI0N24vTFlaUVhEeklEVnU5M0RZQ21EbzM1dFZiMXRDMwpUL1BNd202RnpkTW1NY2M3a210dkR2YXhXNDBWbFU5WGptZ214QnhieXd3VTZLUGtCUzVZTjRGZUpEakUvSTVWCll3Ui9HeXJrS2JiL0NYbURrUDNON2orQWEvS1FXcDVPMnA3aUVibFBsTTFrazJ3Q2VVS1NuYTR0MjgvbE1CWEcKRmhNRXA2S3pIYmVXcnJKdGdjbTBLZkRkT25xZm4zbU1rYmpDbk0wV2FiZUN3eEpIWXZnbXR4RkVaTGNhODhGZAppTEF0Rms4UElUTVVXaTg2allXQmFmQkFJRW5mckJaY05mMitVMkF5S0dNN2lBeUMrZWFyQzBBOEJZOD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=",
+            "MaxCPU": 500,
+            "MaxMemory": 1000,
+            "UseSecretStore": false,
+            "TimeLimit": 300,
+            "AdditionalTimeToLive": 60,
+            "NumberOfRetries": 10
+        }
+    },
+    "DataStores": {
+        "S3": {
+            "Endpoint": "https://play.min.io",
+            "Bucket": "faasr",
+            "Region": "us-east-1"
+        }
+    },
+    "ActionList": {
+        "bowtie2-build-id0000001": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "GH",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 15.985,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "reference.fna"
+                ],
+                "input_size_in_bytes": 98721,
+                "output_size_in_bytes": 8526566,
+                "actionid": "bowtie2-build-id0000001"
+            },
+            "InvokeNext": [
+                "bowtie2-id0000003",
+                "bowtie2-id0000005",
+                "bowtie2-id0000007",
+                "bowtie2-id0000009",
+                "bowtie2-id0000011",
+                "bowtie2-id0000013",
+                "bowtie2-id0000015",
+                "bowtie2-id0000017",
+                "bowtie2-id0000019",
+                "bowtie2-id0000021"
+            ]
+        },
+        "fasterq-dump-id0000002": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "R",
+            "Arguments": {
+                "execution_time": 986.529,
+                "folder": "synthetic_files",
+                "input_files": [],
+                "input_size_in_bytes": 0,
+                "output_size_in_bytes": 1522908848,
+                "actionid": "fasterq-dump-id0000002"
+            },
+            "InvokeNext": [
+                "bowtie2-id0000003"
+            ]
+        },
+        "bowtie2-id0000003": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 61.705,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "reference.3.bt2",
+                    "reference.2.bt2",
+                    "reference.rev.2.bt2",
+                    "reference.rev.1.bt2",
+                    "reference.4.bt2",
+                    "SRR3177999_2.fastq",
+                    "reference.1.bt2",
+                    "SRR3177999_1.fastq"
+                ],
+                "input_size_in_bytes": 1531435414,
+                "output_size_in_bytes": 340,
+                "actionid": "bowtie2-id0000003"
+            },
+            "InvokeNext": [
+                "merge-id0000022"
+            ]
+        },
+        "fasterq-dump-id0000004": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "R",
+            "Arguments": {
+                "execution_time": 752.463,
+                "folder": "synthetic_files",
+                "input_files": [],
+                "input_size_in_bytes": 0,
+                "output_size_in_bytes": 1039917404,
+                "actionid": "fasterq-dump-id0000004"
+            },
+            "InvokeNext": [
+                "bowtie2-id0000005"
+            ]
+        },
+        "bowtie2-id0000005": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "R",
+            "Arguments": {
+                "execution_time": 40.062,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "reference.3.bt2",
+                    "reference.2.bt2",
+                    "reference.rev.2.bt2",
+                    "reference.rev.1.bt2",
+                    "SRR2089244_1.fastq",
+                    "SRR2089244_2.fastq",
+                    "reference.4.bt2",
+                    "reference.1.bt2"
+                ],
+                "input_size_in_bytes": 1048443970,
+                "output_size_in_bytes": 341,
+                "actionid": "bowtie2-id0000005"
+            },
+            "InvokeNext": [
+                "merge-id0000022"
+            ]
+        },
+        "fasterq-dump-id0000006": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "R",
+            "Arguments": {
+                "execution_time": 1626.361,
+                "folder": "synthetic_files",
+                "input_files": [],
+                "input_size_in_bytes": 0,
+                "output_size_in_bytes": 2072503488,
+                "actionid": "fasterq-dump-id0000006"
+            },
+            "InvokeNext": [
+                "bowtie2-id0000007"
+            ]
+        },
+        "bowtie2-id0000007": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 77.388,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "reference.3.bt2",
+                    "reference.2.bt2",
+                    "reference.rev.2.bt2",
+                    "reference.rev.1.bt2",
+                    "SRR3150357_2.fastq",
+                    "reference.4.bt2",
+                    "SRR3150357_1.fastq",
+                    "reference.1.bt2"
+                ],
+                "input_size_in_bytes": 2081030054,
+                "output_size_in_bytes": 340,
+                "actionid": "bowtie2-id0000007"
+            },
+            "InvokeNext": [
+                "merge-id0000022"
+            ]
+        },
+        "fasterq-dump-id0000008": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 1118.694,
+                "folder": "synthetic_files",
+                "input_files": [],
+                "input_size_in_bytes": 0,
+                "output_size_in_bytes": 1010141488,
+                "actionid": "fasterq-dump-id0000008"
+            },
+            "InvokeNext": [
+                "bowtie2-id0000009"
+            ]
+        },
+        "bowtie2-id0000009": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "R",
+            "Arguments": {
+                "execution_time": 37.697,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "reference.3.bt2",
+                    "reference.2.bt2",
+                    "reference.rev.2.bt2",
+                    "reference.rev.1.bt2",
+                    "SRR3177918_2.fastq",
+                    "reference.4.bt2",
+                    "SRR3177918_1.fastq",
+                    "reference.1.bt2"
+                ],
+                "input_size_in_bytes": 1018668054,
+                "output_size_in_bytes": 340,
+                "actionid": "bowtie2-id0000009"
+            },
+            "InvokeNext": [
+                "merge-id0000022"
+            ]
+        },
+        "fasterq-dump-id0000010": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "R",
+            "Arguments": {
+                "execution_time": 1431.237,
+                "folder": "synthetic_files",
+                "input_files": [],
+                "input_size_in_bytes": 0,
+                "output_size_in_bytes": 1573220368,
+                "actionid": "fasterq-dump-id0000010"
+            },
+            "InvokeNext": [
+                "bowtie2-id0000011"
+            ]
+        },
+        "bowtie2-id0000011": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 55.14,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "reference.3.bt2",
+                    "reference.2.bt2",
+                    "reference.rev.2.bt2",
+                    "reference.rev.1.bt2",
+                    "SRR3152146_1.fastq",
+                    "SRR3152146_2.fastq",
+                    "reference.4.bt2",
+                    "reference.1.bt2"
+                ],
+                "input_size_in_bytes": 1581746934,
+                "output_size_in_bytes": 340,
+                "actionid": "bowtie2-id0000011"
+            },
+            "InvokeNext": [
+                "merge-id0000022"
+            ]
+        },
+        "fasterq-dump-id0000012": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 5.701,
+                "folder": "synthetic_files",
+                "input_files": [],
+                "input_size_in_bytes": 0,
+                "output_size_in_bytes": 2148984,
+                "actionid": "fasterq-dump-id0000012"
+            },
+            "InvokeNext": [
+                "bowtie2-id0000013"
+            ]
+        },
+        "bowtie2-id0000013": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 9.366,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "reference.3.bt2",
+                    "reference.2.bt2",
+                    "reference.rev.2.bt2",
+                    "reference.rev.1.bt2",
+                    "SRR1103622_2.fastq",
+                    "reference.4.bt2",
+                    "SRR1103622_1.fastq",
+                    "reference.1.bt2"
+                ],
+                "input_size_in_bytes": 10675550,
+                "output_size_in_bytes": 340,
+                "actionid": "bowtie2-id0000013"
+            },
+            "InvokeNext": [
+                "merge-id0000022"
+            ]
+        },
+        "fasterq-dump-id0000014": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "R",
+            "Arguments": {
+                "execution_time": 1267.669,
+                "folder": "synthetic_files",
+                "input_files": [],
+                "input_size_in_bytes": 0,
+                "output_size_in_bytes": 1216127408,
+                "actionid": "fasterq-dump-id0000014"
+            },
+            "InvokeNext": [
+                "bowtie2-id0000015"
+            ]
+        },
+        "bowtie2-id0000015": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 56.898,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "reference.3.bt2",
+                    "SRR3150802_2.fastq",
+                    "reference.2.bt2",
+                    "reference.rev.2.bt2",
+                    "reference.rev.1.bt2",
+                    "reference.4.bt2",
+                    "SRR3150802_1.fastq",
+                    "reference.1.bt2"
+                ],
+                "input_size_in_bytes": 1224653974,
+                "output_size_in_bytes": 340,
+                "actionid": "bowtie2-id0000015"
+            },
+            "InvokeNext": [
+                "merge-id0000022"
+            ]
+        },
+        "fasterq-dump-id0000016": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "R",
+            "Arguments": {
+                "execution_time": 1463.248,
+                "folder": "synthetic_files",
+                "input_files": [],
+                "input_size_in_bytes": 0,
+                "output_size_in_bytes": 1645500128,
+                "actionid": "fasterq-dump-id0000016"
+            },
+            "InvokeNext": [
+                "bowtie2-id0000017"
+            ]
+        },
+        "bowtie2-id0000017": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 61.598,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "reference.3.bt2",
+                    "reference.2.bt2",
+                    "reference.rev.2.bt2",
+                    "reference.rev.1.bt2",
+                    "SRR3177957_1.fastq",
+                    "SRR3177957_2.fastq",
+                    "reference.4.bt2",
+                    "reference.1.bt2"
+                ],
+                "input_size_in_bytes": 1654026694,
+                "output_size_in_bytes": 340,
+                "actionid": "bowtie2-id0000017"
+            },
+            "InvokeNext": [
+                "merge-id0000022"
+            ]
+        },
+        "fasterq-dump-id0000018": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "R",
+            "Arguments": {
+                "execution_time": 1680.421,
+                "folder": "synthetic_files",
+                "input_files": [],
+                "input_size_in_bytes": 0,
+                "output_size_in_bytes": 2179255888,
+                "actionid": "fasterq-dump-id0000018"
+            },
+            "InvokeNext": [
+                "bowtie2-id0000019"
+            ]
+        },
+        "bowtie2-id0000019": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 67.856,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "reference.3.bt2",
+                    "reference.2.bt2",
+                    "reference.rev.2.bt2",
+                    "reference.rev.1.bt2",
+                    "SRR1918774_1.fastq",
+                    "reference.4.bt2",
+                    "SRR1918774_2.fastq",
+                    "reference.1.bt2"
+                ],
+                "input_size_in_bytes": 2187782454,
+                "output_size_in_bytes": 340,
+                "actionid": "bowtie2-id0000019"
+            },
+            "InvokeNext": [
+                "merge-id0000022"
+            ]
+        },
+        "fasterq-dump-id0000020": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "R",
+            "Arguments": {
+                "execution_time": 1305.96,
+                "folder": "synthetic_files",
+                "input_files": [],
+                "input_size_in_bytes": 0,
+                "output_size_in_bytes": 1309411088,
+                "actionid": "fasterq-dump-id0000020"
+            },
+            "InvokeNext": [
+                "bowtie2-id0000021"
+            ]
+        },
+        "bowtie2-id0000021": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 58.225,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "reference.3.bt2",
+                    "reference.2.bt2",
+                    "SRR3177772_2.fastq",
+                    "reference.rev.2.bt2",
+                    "reference.rev.1.bt2",
+                    "SRR3177772_1.fastq",
+                    "reference.4.bt2",
+                    "reference.1.bt2"
+                ],
+                "input_size_in_bytes": 1317937654,
+                "output_size_in_bytes": 338,
+                "actionid": "bowtie2-id0000021"
+            },
+            "InvokeNext": [
+                "merge-id0000022"
+            ]
+        },
+        "merge-id0000022": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "K8s",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 0.132,
+                "folder": "synthetic_files",
+                "input_files": [
+                    "SRR1103622.bam",
+                    "SRR3152146.bam.bai",
+                    "SRR3177918.bam.bai",
+                    "SRR3150802.bam",
+                    "SRR1918774.bam",
+                    "SRR3177999.bam",
+                    "SRR1918774.bam.bai",
+                    "SRR3177772.bam",
+                    "SRR3177957.bam",
+                    "SRR2089244.bam",
+                    "SRR3152146.bam",
+                    "SRR3150802.bam.bai",
+                    "SRR3150357.bam",
+                    "SRR3177772.bam.bai",
+                    "SRR3177918.bam",
+                    "SRR3177957.bam.bai",
+                    "SRR3177999.bam.bai",
+                    "SRR3150357.bam.bai",
+                    "SRR1103622.bam.bai",
+                    "SRR2089244.bam.bai"
+                ],
+                "input_size_in_bytes": 3399,
+                "output_size_in_bytes": 2901,
+                "actionid": "merge-id0000022"
+            },
+            "InvokeNext": []
+        },
+        "start202854885": {
+            "FunctionName": "synthetic_faas_function",
+            "FaaSServer": "GH",
+            "Type": "Python",
+            "Arguments": {
+                "execution_time": 0,
+                "folder": "synthetic_files",
+                "input_files": [],
+                "input_size_in_bytes": 0,
+                "output_size_in_bytes": 0,
+                "actionid": "start202854885"
+            },
+            "InvokeNext": [
+                "bowtie2-build-id0000001",
+                "fasterq-dump-id0000002",
+                "fasterq-dump-id0000004",
+                "fasterq-dump-id0000006",
+                "fasterq-dump-id0000008",
+                "fasterq-dump-id0000010",
+                "fasterq-dump-id0000012",
+                "fasterq-dump-id0000014",
+                "fasterq-dump-id0000016",
+                "fasterq-dump-id0000018",
+                "fasterq-dump-id0000020"
+            ]
+        }
+    },
+    "ActionContainers": {
+        "bowtie2-build-id0000001": "ghcr.io/ashish-ramrakhiani/github-actions-python:4.0",
+        "fasterq-dump-id0000002": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:8",
+        "bowtie2-id0000003": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "fasterq-dump-id0000004": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:8",
+        "bowtie2-id0000005": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:8",
+        "fasterq-dump-id0000006": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:8",
+        "bowtie2-id0000007": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "fasterq-dump-id0000008": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "bowtie2-id0000009": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:8",
+        "fasterq-dump-id0000010": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:8",
+        "bowtie2-id0000011": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "fasterq-dump-id0000012": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "bowtie2-id0000013": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "fasterq-dump-id0000014": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:8",
+        "bowtie2-id0000015": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "fasterq-dump-id0000016": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:8",
+        "bowtie2-id0000017": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "fasterq-dump-id0000018": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:8",
+        "bowtie2-id0000019": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "fasterq-dump-id0000020": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:8",
+        "bowtie2-id0000021": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "merge-id0000022": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "start202854885": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:1"
+    },
+    "FunctionGitRepo": {
+        "synthetic_faas_function": "nolcut/FaaSr-synthetic"
+    },
+    "FunctionInvoke": "start202854885",
+  "WorkflowName":"test-exp-sra-2",
+    "InvocationID": "",
+    "FaaSrLog": "FaaSrLog",
+    "LoggingDataStore": "S3",
+    "DefaultDataStore": "S3",
+    "FunctionCRANPackage": {
+        "synthetic_faas_function": []
+    },
+    "FunctionGitHubPackage": {
+        "synthetic_faas_function": []
+    }
+}
