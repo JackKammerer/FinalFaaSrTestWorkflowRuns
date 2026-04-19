@@ -1142,29 +1142,6 @@ def validate_certificate(certificate):
 
 
 
-
-
-
-
-
-from requests.adapters import HTTPAdapter
-from urllib3.util.ssl_ import create_urllib3_context
-import ssl
-
-class LegacyCertAdapter(HTTPAdapter):
-    """Adapter that allows certs missing the Authority Key Identifier."""
-    def __init__(self, cert_path, **kwargs):
-        self.cert_path = cert_path
-        super().__init__(**kwargs)
-
-    def init_poolmanager(self, *args, **kwargs):
-        ctx = create_urllib3_context()
-        ctx.options |= ssl.OP_LEGACY_SERVER_CONNECT  # Allow legacy/incomplete certs
-        ctx.load_verify_locations(self.cert_path)
-        kwargs["ssl_context"] = ctx
-        super().init_poolmanager(*args, **kwargs)
-
-
 def test_kubernetes_connectivity(cluster_name, cluster_config):
     """
     Test connectivity to the Kubernetes cluster REST API endpoint
@@ -1232,11 +1209,21 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
     s = requests.Session()
 
     if (certificate):
-        with open("./temp.pem", "w") as certFile:
+        with open("/usr/local/share/ca-certificate/kube.crt", "w") as certFile:
             certFile.write(certificate)
         
-        s.mount("https://", LegacyCertAdapter("./temp.pem"))
-        s.verify = "./temp.pem"
+        import subprocess
+
+        result = subprocess.run(
+            ["update-ca-certificates"],
+            capture_output=True,
+            text=True
+        )
+
+        print(result.stdout)
+        print(result.stderr)
+
+        s.verify = "/usr/local/share/ca-certificate/kube.crt"
 
 
     return_value = True
