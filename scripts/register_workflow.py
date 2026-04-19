@@ -1215,22 +1215,15 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
             certFile.write(certificate)
         
         s.verify = "./temp.pem"
+        
+        import ssl
+
+        context = ssl.create_default_context()
+        context.load_verify_locations(cafile="temp.pem")
 
     return_value = True
 
     try:
-        if (certificate):
-            import subprocess
-
-            result = subprocess.run(
-                ["openssl", "x509", "-in", "temp.pem", "-text", "-noout"],
-                capture_output=True,
-                text=True
-            )
-
-            print("STDOUT:\n", result.stdout)
-            print("STDERR\n", result.stderr)
-
         response = s.post(jobs_url, headers=headers, timeout=10, json=job_payload)
 
         if response.status_code == 200 or response.status_code == 201:
