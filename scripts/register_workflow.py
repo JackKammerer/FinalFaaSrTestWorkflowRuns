@@ -1229,13 +1229,15 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
         }
     }
 
+    s = requests.Session()
+
     if (certificate):
         with open("./temp.pem", "w") as certFile:
             certFile.write(certificate)
         
-        s.verify = "./temp.pem"
-        s = requests.Session()
         s.mount("https://", LegacyCertAdapter("./temp.pem"))
+        s.verify = "./temp.pem"
+
 
     return_value = True
 
