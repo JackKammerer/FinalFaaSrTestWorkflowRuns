@@ -56,4 +56,5 @@ jobs:
           sudo cp nrpCert.crt /usr/share/ca-certificates/nrpCert.crt
           echo 'nrpCert.crt' | sudo tee -a /etc/ca-certificates.conf
           sudo update-ca-certificates
+          openssl verify -CAfile /etc/ssl/certs/ca-certificates.crt nrpCert.crt
           python scripts/register_workflow.py --workflow-file ${{ github.event.inputs.workflow_file }} 
