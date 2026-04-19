@@ -1209,21 +1209,10 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
     s = requests.Session()
 
     if (certificate):
-        with open("/usr/local/share/ca-certificates/kube.crt", "w") as certFile:
+        with open("./temp.crt", "w") as certFile:
             certFile.write(certificate)
-        
-        import subprocess
 
-        result = subprocess.run(
-            ["update-ca-certificates"],
-            capture_output=True,
-            text=True
-        )
-
-        print(result.stdout)
-        print(result.stderr)
-
-        s.verify = "/usr/local/share/ca-certificates/kube.crt"
+        s.verify = "./temp.crt"
 
 
     return_value = True
