@@ -1212,7 +1212,7 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
         with open("./temp.pem", "w") as certFile:
             certFile.write(certificate)
 
-        s.verify = "/usr/local/share/ca-certificates/nrpCert.cer"
+        #s.verify = "/usr/local/share/ca-certificates/nrpCert.cer"
 
 
     return_value = True
