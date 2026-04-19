@@ -1210,22 +1210,20 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
 
     from requests.adapters import HTTPAdapter
 
-    class SSLContextAdapter(HTTPAdapter):
-        def __init__(self, ssl_context=None, **kwargs):
-            self.ssl_context = ssl_context
+    class LaxSSLAdapter(HTTPAdapter):
+        def __init__(self, **kwargs):
             super().__init__(**kwargs)
 
         def init_poolmanager(self, connections, maxsize, block=False, **pool_kwargs):
             # Pass the custom context to urllib3's PoolManager
-            pool_kwargs['ssl_context'] = self.ssl_context
+            ctx = ssl.create_default_context()
+            ctx.verify_flags &= ~ssl.VERIFY_X509_STRICT
+
+            pool_kwargs['ssl_context'] = ctx
             return super().init_poolmanager(connections, maxsize, block, **pool_kwargs)
 
-    # 1. Create a specific SSL Context
-    ctx = ssl.create_default_context()
-    ctx.verify_flags &= ~ssl.VERIFY_X509_STRICT
-
     s = requests.Session()
-    adapter = SSLContextAdapter(ssl_context=ctx)
+    adapter = LaxSSLAdapter()
     s.mount("https://", adapter)
 
     if (certificate):
