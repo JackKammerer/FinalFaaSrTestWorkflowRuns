@@ -9,6 +9,9 @@ import sys
 import textwrap
 import time
 import base64
+import ssl
+
+print(ssl.OPENSSL_VERSION)
 
 import boto3
 import requests
@@ -1253,8 +1256,10 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
     
     except requests.exceptions.SSLError as e:
         logger.error(f"Kubernetes cluster connectivity test failed for '{cluster_name}' due to an invalid SSL certificate! Either the certificate was not provided or is invalid: {e}")
+        return_value = False
     except requests.exceptions.RequestException as e:
         logger.error(f"Kubernetes cluster connectivity error for '{cluster_name}': {e}")
+        return_value = False
 
     if (certificate):
         os.remove("./temp.pem")
