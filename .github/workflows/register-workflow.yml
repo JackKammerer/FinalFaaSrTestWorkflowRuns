@@ -53,7 +53,7 @@ jobs:
           K8s_Token: ${{ secrets.K8s_Token }}
         run: |
           # Run function registration
-          sudo cp nrpCert.cer /usr/local/share/ca-certificates/nrpCert.cer
-          echo 'nrpCert.cer' | sudo tee -a /etc/ca-certificates.conf
+          sudo cp nrpCert.crt /usr/local/share/ca-certificates/nrpCert.crt
+          echo 'nrpCert.crt' | sudo tee -a /etc/ca-certificates.conf
           sudo update-ca-certificates
           python scripts/register_workflow.py --workflow-file ${{ github.event.inputs.workflow_file }} 
