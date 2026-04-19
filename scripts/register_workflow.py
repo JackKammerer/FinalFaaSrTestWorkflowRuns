@@ -1215,12 +1215,24 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
             certFile.write(certificate)
         
         s.verify = "./temp.pem"
-        
+
         import ssl
 
         context = ssl.create_default_context()
         context.load_verify_locations(cafile="temp.pem")
         context.verify_flags |= ssl.VERIFY_X509_PARTIAL_CHAIN
+
+
+        import subprocess
+
+        result = subprocess.run(
+            ["openssl", "verify", "-CAfile", "temp.pem", "temp.pem"],
+            capture_output=True,
+            text=True
+        )
+
+        print("STDOUT:\n", result.stdout)
+        print("STDERR:\n", result.stderr)
 
     return_value = True
 
