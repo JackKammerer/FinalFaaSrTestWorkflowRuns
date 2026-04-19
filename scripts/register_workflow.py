@@ -1220,6 +1220,7 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
 
         context = ssl.create_default_context()
         context.load_verify_locations(cafile="temp.pem")
+        context.verify_flags |= ssl.VERIFY_X509_PARTIAL_CHAIN
 
     return_value = True
 
