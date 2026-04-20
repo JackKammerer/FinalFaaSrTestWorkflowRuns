@@ -529,7 +529,7 @@
         }
     },
     "ActionContainers": {
-        "bowtie2-build-id0000001": "ghcr.io/jackkammerer/test_github_python_faasr_test:4",
+        "bowtie2-build-id0000001": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:4",
         "fasterq-dump-id0000002": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:11",
         "bowtie2-id0000003": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:4",
         "fasterq-dump-id0000004": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:11",
