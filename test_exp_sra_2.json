@@ -58,7 +58,7 @@
         },
         "fasterq-dump-id0000002": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 986.529,
@@ -74,7 +74,7 @@
         },
         "bowtie2-id0000003": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 61.705,
@@ -530,8 +530,8 @@
     },
     "ActionContainers": {
         "bowtie2-build-id0000001": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:4",
-        "fasterq-dump-id0000002": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:11",
-        "bowtie2-id0000003": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:4",
+        "fasterq-dump-id0000002": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:11",
+        "bowtie2-id0000003": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:4",
         "fasterq-dump-id0000004": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:11",
         "bowtie2-id0000005": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:11",
         "fasterq-dump-id0000006": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:11",
