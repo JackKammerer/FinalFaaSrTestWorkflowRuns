@@ -61,7 +61,7 @@
             "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
-                "execution_time": 986.529,
+                "execution_time": 46.529,
                 "folder": "synthetic_files",
                 "input_files": [],
                 "input_size_in_bytes": 0,
@@ -102,7 +102,7 @@
             "FaaSServer": "K8s",
             "Type": "R",
             "Arguments": {
-                "execution_time": 752.463,
+                "execution_time": 52.463,
                 "folder": "synthetic_files",
                 "input_files": [],
                 "input_size_in_bytes": 0,
@@ -143,7 +143,7 @@
             "FaaSServer": "K8s",
             "Type": "R",
             "Arguments": {
-                "execution_time": 1626.361,
+                "execution_time": 96.361,
                 "folder": "synthetic_files",
                 "input_files": [],
                 "input_size_in_bytes": 0,
@@ -184,7 +184,7 @@
             "FaaSServer": "K8s",
             "Type": "Python",
             "Arguments": {
-                "execution_time": 1118.694,
+                "execution_time": 118.694,
                 "folder": "synthetic_files",
                 "input_files": [],
                 "input_size_in_bytes": 0,
@@ -225,7 +225,7 @@
             "FaaSServer": "K8s",
             "Type": "R",
             "Arguments": {
-                "execution_time": 1431.237,
+                "execution_time": 41.237,
                 "folder": "synthetic_files",
                 "input_files": [],
                 "input_size_in_bytes": 0,
@@ -307,7 +307,7 @@
             "FaaSServer": "K8s",
             "Type": "R",
             "Arguments": {
-                "execution_time": 1267.669,
+                "execution_time": 67.669,
                 "folder": "synthetic_files",
                 "input_files": [],
                 "input_size_in_bytes": 0,
@@ -348,7 +348,7 @@
             "FaaSServer": "K8s",
             "Type": "R",
             "Arguments": {
-                "execution_time": 1463.248,
+                "execution_time": 73.248,
                 "folder": "synthetic_files",
                 "input_files": [],
                 "input_size_in_bytes": 0,
@@ -389,7 +389,7 @@
             "FaaSServer": "K8s",
             "Type": "R",
             "Arguments": {
-                "execution_time": 1680.421,
+                "execution_time": 80.421,
                 "folder": "synthetic_files",
                 "input_files": [],
                 "input_size_in_bytes": 0,
@@ -430,7 +430,7 @@
             "FaaSServer": "K8s",
             "Type": "R",
             "Arguments": {
-                "execution_time": 1305.96,
+                "execution_time": 105.96,
                 "folder": "synthetic_files",
                 "input_files": [],
                 "input_size_in_bytes": 0,
