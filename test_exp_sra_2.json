@@ -188,7 +188,7 @@
                 "folder": "synthetic_files",
                 "input_files": [],
                 "input_size_in_bytes": 0,
-                "output_size_in_bytes": 1010141488,
+                "output_size_in_bytes": 41488,
                 "actionid": "fasterq-dump-id0000008"
             },
             "InvokeNext": [
