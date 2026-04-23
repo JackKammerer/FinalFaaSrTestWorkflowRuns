@@ -16,7 +16,6 @@
             "MaxCPU": 1000,
             "MaxMemory": 2000,
             "UseSecretStore": false,
-            "TimeLimit": 10000,
             "AdditionalTimeToLive": 60,
             "NumberOfRetries": 10
         }
