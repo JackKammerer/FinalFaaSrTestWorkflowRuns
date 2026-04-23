@@ -22,8 +22,8 @@
     },
     "DataStores": {
         "S3": {
-            "Endpoint": "https://play.min.io",
-            "Bucket": "faasr",
+            "Endpoint": "https://s3.us-east-005.backblazeb2.com",
+            "Bucket": "faasrBucket1234",
             "Region": "us-east-1"
         }
     },
