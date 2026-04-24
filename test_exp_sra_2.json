@@ -538,7 +538,7 @@
         "fasterq-dump-id0000008": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
         "bowtie2-id0000009": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
         "fasterq-dump-id0000010": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
-        "bowtie2-id0000011": "gghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
+        "bowtie2-id0000011": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
         "fasterq-dump-id0000012": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
         "bowtie2-id0000013": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
         "fasterq-dump-id0000014": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
