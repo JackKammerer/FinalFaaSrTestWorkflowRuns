@@ -1,0 +1,30 @@
+name: test-exp-sra-2-fasterq-dump-id0000018
+
+on:
+    workflow_dispatch:
+        inputs:
+            OVERWRITTEN:
+                description: "Overwritten fields"
+                required: true
+            PAYLOAD_URL:
+                description: "URL to payload"
+                required: true
+
+jobs:
+    run_docker_image:
+        runs-on: ubuntu-latest
+        container: ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9
+
+        env:
+            GH_PAT: ${{ secrets.GH_PAT}}
+            K8s_Token: ${{ secrets.K8s_Token}}
+            S3_AccessKey: ${{ secrets.S3_AccessKey}}
+            S3_SecretKey: ${{ secrets.S3_SecretKey}}
+            OVERWRITTEN: ${{ github.event.inputs.OVERWRITTEN }}
+            PAYLOAD_URL: ${{ github.event.inputs.PAYLOAD_URL }}
+
+        steps:
+          - name: Run Python entrypoint
+            run: |
+                cd /action
+                python3 faasr_entry.py
