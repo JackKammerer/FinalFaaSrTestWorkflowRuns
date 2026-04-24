@@ -98,7 +98,7 @@
         },
         "fasterq-dump-id0000004": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 52.463,
@@ -114,7 +114,7 @@
         },
         "bowtie2-id0000005": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 40.062,
@@ -139,7 +139,7 @@
         },
         "fasterq-dump-id0000006": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 96.361,
@@ -155,7 +155,7 @@
         },
         "bowtie2-id0000007": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 77.388,
@@ -180,7 +180,7 @@
         },
         "fasterq-dump-id0000008": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 118.694,
@@ -196,7 +196,7 @@
         },
         "bowtie2-id0000009": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 37.697,
@@ -221,7 +221,7 @@
         },
         "fasterq-dump-id0000010": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 41.237,
@@ -237,7 +237,7 @@
         },
         "bowtie2-id0000011": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 55.14,
@@ -262,7 +262,7 @@
         },
         "fasterq-dump-id0000012": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 5.701,
@@ -278,7 +278,7 @@
         },
         "bowtie2-id0000013": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 9.366,
@@ -303,7 +303,7 @@
         },
         "fasterq-dump-id0000014": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 67.669,
@@ -319,7 +319,7 @@
         },
         "bowtie2-id0000015": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 56.898,
@@ -344,7 +344,7 @@
         },
         "fasterq-dump-id0000016": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 73.248,
@@ -360,7 +360,7 @@
         },
         "bowtie2-id0000017": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 61.598,
@@ -385,7 +385,7 @@
         },
         "fasterq-dump-id0000018": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 80.421,
@@ -401,7 +401,7 @@
         },
         "bowtie2-id0000019": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 67.856,
@@ -426,7 +426,7 @@
         },
         "fasterq-dump-id0000020": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 105.96,
@@ -442,7 +442,7 @@
         },
         "bowtie2-id0000021": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 58.225,
@@ -467,7 +467,7 @@
         },
         "merge-id0000022": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 0.132,
@@ -531,25 +531,25 @@
         "bowtie2-build-id0000001": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
         "fasterq-dump-id0000002": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
         "bowtie2-id0000003": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
-        "fasterq-dump-id0000004": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:16",
-        "bowtie2-id0000005": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:16",
-        "fasterq-dump-id0000006": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:16",
-        "bowtie2-id0000007": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:9",
-        "fasterq-dump-id0000008": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:9",
-        "bowtie2-id0000009": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:16",
-        "fasterq-dump-id0000010": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:16",
-        "bowtie2-id0000011": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:9",
-        "fasterq-dump-id0000012": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:9",
-        "bowtie2-id0000013": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:9",
-        "fasterq-dump-id0000014": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:16",
-        "bowtie2-id0000015": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:9",
-        "fasterq-dump-id0000016": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:16",
-        "bowtie2-id0000017": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:9",
-        "fasterq-dump-id0000018": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:16",
-        "bowtie2-id0000019": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:9",
-        "fasterq-dump-id0000020": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:16",
-        "bowtie2-id0000021": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:9",
-        "merge-id0000022": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:9",
+        "fasterq-dump-id0000004": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
+        "bowtie2-id0000005": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
+        "fasterq-dump-id0000006": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
+        "bowtie2-id0000007": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
+        "fasterq-dump-id0000008": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
+        "bowtie2-id0000009": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
+        "fasterq-dump-id0000010": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
+        "bowtie2-id0000011": "gghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
+        "fasterq-dump-id0000012": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
+        "bowtie2-id0000013": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
+        "fasterq-dump-id0000014": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
+        "bowtie2-id0000015": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
+        "fasterq-dump-id0000016": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
+        "bowtie2-id0000017": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
+        "fasterq-dump-id0000018": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
+        "bowtie2-id0000019": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
+        "fasterq-dump-id0000020": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:9",
+        "bowtie2-id0000021": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
+        "merge-id0000022": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9",
         "start202854885": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:9"
     },
     "FunctionGitRepo": {
