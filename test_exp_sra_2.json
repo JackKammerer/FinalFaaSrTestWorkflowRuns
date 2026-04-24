@@ -30,7 +30,7 @@
     "ActionList": {
         "bowtie2-build-id0000001": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "GH",
+            "FaaSServer": "K8s",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 15.985,
