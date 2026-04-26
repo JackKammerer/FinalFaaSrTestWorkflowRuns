@@ -26,7 +26,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
 class LaxSSLAdapter(HTTPAdapter):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -38,7 +37,6 @@ class LaxSSLAdapter(HTTPAdapter):
 
         pool_kwargs['ssl_context'] = ctx
         return super().init_poolmanager(connections, maxsize, block, **pool_kwargs)
-
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
@@ -1079,10 +1077,17 @@ def deploy_to_kubernetes(workflow_data):
     """
     logger.info("Validating Kubernetes configuration...")
 
+    workflow_name = workflow_data.get("WorkflowName")
+
+    if not workflow_name:
+        logger.error("WorkflowName not specified in workflow file")
+        sys.exit(1)
+
     # Find all of the Kubernetes actions
+    kubernetes_actions = {}
     kubernetes_clusters = {}
 
-    for _, action_data in workflow_data["ActionList"].items():
+    for action_name, action_data in workflow_data["ActionList"].items():
         cluster_name = action_data["FaaSServer"]
         cluster_config = workflow_data["ComputeServers"][cluster_name]
         faas_type = cluster_config.get("FaaSType", "")
@@ -1090,6 +1095,8 @@ def deploy_to_kubernetes(workflow_data):
         if faas_type.lower() == "kubernetes":
             if cluster_name not in kubernetes_clusters:
                 kubernetes_clusters[cluster_name] = cluster_config.copy()
+            
+            kubernetes_actions[action_name] = action_data
 
 
     if len(kubernetes_clusters) == 0:
@@ -1103,10 +1110,165 @@ def deploy_to_kubernetes(workflow_data):
             logger.error(f"Failed to connect to Kubernetes cluster: {cluster_name}")
             sys.exit(1)
     
+
+    for action_name, action_data in kubernetes_actions.items():
+        function = f"{workflow_name}-{action_name}"
+
+        logger.info(f"Registering Kubernetes Job: {function}")
+        cluster_config = kubernetes_clusters[action_data["FaaSServer"]]
+
+        action_containers = workflow_data["ActionContainers"]
+        if not action_containers.get(action_name):
+            logger.error(f"Unable to get a valid container associated with the function: {action_name}")
+            sys.exit(1)
+        
+        container = action_containers[action_name]
+
+        submit_suspended_kubernetes_job(function, container, cluster_config)
+
+
     logger.info(
         f"Kubernetes configuration validated successfully\n"
         f"No persistent resources were created - this job will be submitted to the cluster at invocation time"
     )
+
+
+def submit_suspended_kubernetes_job(function, container, cluster_config):
+
+    endpoint = cluster_config["Endpoint"]
+    namespace = cluster_config.get("Namespace", "default")
+    memoryLimit = cluster_config.get("MaxMemory")
+    cpuLimit = cluster_config.get("MaxCPU")
+    activeDeadlineSeconds = cluster_config.get("TimeLimit")
+    additionalTTL = cluster_config.get("AdditionalTimeToLive")
+    numberOfRetries = cluster_config.get("NumberOfRetries")
+
+    allowSelfSignedCertificate = cluster_config.get("AllowSelfSignedCertificate")
+    certificate = cluster_config.get("SSLCertificate")
+
+    #Ensure the endpoint contains the needed protocol
+    if not endpoint.startswith("http"):
+        endpoint = f"https://{endpoint}"    
+    
+    submit_url = f"{endpoint}/apis/batch/v1/namespaces/{namespace}/jobs"
+    
+    if (certificate != None):
+        (isValid, certificate) = validate_certificate(certificate)
+        if (not isValid):
+            logger.error(f"The provided certificate is invalid! Please either provide a valid certificate or remove it if unncessary!")
+            return False 
+
+
+    headers = {"Accept": "application/json"}
+
+    kubernetes_token = os.getenv(f"K8s_Token")
+
+    if kubernetes_token:
+        headers["Authorization"] = f"Bearer {kubernetes_token}"
+    else:
+        logger.error(
+            f"K8s_Token must be provided to retrieve the jobs! Please ensure the value K8s_Token, with the appropriate JWT, is included in yours secrets!"
+        )
+
+        return False
+
+    s = requests.Session()
+
+    if (allowSelfSignedCertificate):
+        # Create an adapter that removes the stricter certificate checks
+        # Should allow self-signed certs
+        adapter = LaxSSLAdapter()
+        s.mount("https://", adapter)
+
+    
+    resourceObject = {}
+
+    if (memoryLimit and cpuLimit):
+        resourceObject = {
+                "requests": {
+                    "memory": f"{memoryLimit}M",
+                    "cpu": f"{cpuLimit}m"
+                },
+                "limits": {
+                    "memory": f"{memoryLimit}M",
+                    "cpu": f"{cpuLimit}m"
+                }
+            }
+
+    job_payload = {
+        "apiVersion": "batch/v1",
+        "kind": "Job",
+        "metadata": {
+            "name": f"{function}"
+        },
+        "spec": {
+            "suspend": True,
+            "activeDeadlineSeconds": activeDeadlineSeconds,
+            "template": {
+                "spec": {
+                    "containers": [
+                        {
+                            "name": f"{function}",
+                            "image": f"{container}",
+                            "resources": resourceObject
+                        }
+                    ],
+                    "restartPolicy": "Never"
+                }
+            },
+            "backoffLimit": numberOfRetries,
+            "ttlSecondsAfterFinished": additionalTTL
+        }
+    }
+
+
+    if (certificate):
+        with open("./temp.pem", "w") as certFile:
+            certFile.write(certificate)
+        
+        s.verify = "./temp.pem"
+
+    return_value = True
+
+    try:
+        response = s.post(submit_url, headers=headers, timeout=10, json=job_payload)
+
+        if response.status_code in [200, 201, 202]:
+            job_info = response.json()
+
+            succ_msg = (
+                f"Kubernetes: Successfully submitted job: {function} "
+                f"(This is the response json: {job_info})"
+            )
+            logger.info(succ_msg)
+        else:
+            error_content = response.text
+            err_msg = (
+                f"Kubernetes: Error submitting job: {function} - "
+                f"HTTP {response.status_code}: {error_content}"
+            )
+            logger.error(err_msg)
+
+            if response.status_code == 401:
+                logger.error(
+                    "Kubernetes: Authentication failed - check token validity and username"
+                )
+            elif response.status_code == 403:
+                logger.error(
+                    "Kubernetes: Authorization failed - check user permissions"
+                )
+
+            return_value = False
+            
+    except Exception as e:
+        logger.exception(f"Kubernetes request failed: {e}")
+        return_value = False
+    
+    if (certificate):
+        os.remove("./temp.pem")
+
+    return return_value
+
 
 
 def validate_kubernetes_cluster_config(cluster_name, cluster_config):
@@ -1157,7 +1319,6 @@ def validate_certificate(certificate):
 
 
 
-
 def test_kubernetes_connectivity(cluster_name, cluster_config):
     """
     Test connectivity to the Kubernetes cluster REST API endpoint
@@ -1180,6 +1341,7 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
         if (not isValid):
             logger.error(f"The provided certificate is invalid! Please either provide a valid certificate or remove it if unncessary!")
             return False 
+
 
     #Ensure the endpoint contains the needed protocol
     if not endpoint.startswith("http"):
@@ -1209,7 +1371,15 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
         )
 
         return False
-    
+
+    s = requests.Session()
+
+    if (allowSelfSignedCertificate):
+        # Create an adapter that removes the stricter certificate checks
+        # Should allow self-signed certs
+        adapter = LaxSSLAdapter()
+        s.mount("https://", adapter)
+
     job_payload = {
         "apiVersion": "authorization.k8s.io/v1",
         "kind": "SelfSubjectAccessReview",
@@ -1223,25 +1393,15 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
         }
     }
 
-    s = requests.Session()
-
-    if (allowSelfSignedCertificate):
-        # Create an adapter that removes the stricter certificate checks
-        # Should allow self-signed certs
-        adapter = LaxSSLAdapter()
-        s.mount("https://", adapter)
-
     if (certificate):
         with open("./temp.pem", "w") as certFile:
             certFile.write(certificate)
-
+        
         s.verify = "./temp.pem"
-
 
     return_value = True
 
     try:
-
         response = s.post(jobs_url, headers=headers, timeout=10, json=job_payload)
 
         if response.status_code == 200 or response.status_code == 201:
