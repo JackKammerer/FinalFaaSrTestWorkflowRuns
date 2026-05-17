@@ -13,6 +13,7 @@ import base64
 import boto3
 import requests
 import ssl
+import uuid
 
 from requests.adapters import HTTPAdapter
 from FaaSr_py import graph_functions as faasr_gf
@@ -1228,13 +1229,14 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
         }
     }
 
+
+    temp_cert_identifier = uuid.uuid4()
+
     if (certificate):
-        with open("./temp.pem", "w") as certFile:
+        with open(f"./temp-{temp_cert_identifier}.pem", "w") as certFile:
             certFile.write(certificate)
         
-        s.verify = "./temp.pem"
-
-    return_value = True
+        s.verify = f"./temp-{temp_cert_identifier}.pem"
 
     try:
         response = s.post(jobs_url, headers=headers, timeout=10, json=job_payload)
@@ -1278,9 +1280,13 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
     except requests.exceptions.RequestException as e:
         logger.error(f"Kubernetes cluster connectivity error for '{cluster_name}': {e}")
         return_value = False
-
-    if (certificate):
-        os.remove("./temp.pem")
+    finally:
+        if (certificate):
+            try:
+                os.remove(f"./temp-{temp_cert_identifier}.pem")
+            except OSError:
+                pass
+    
     return return_value
 
             
