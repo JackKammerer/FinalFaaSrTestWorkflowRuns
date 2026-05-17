@@ -1238,6 +1238,8 @@ def test_kubernetes_connectivity(cluster_name, cluster_config):
         
         s.verify = f"./temp-{temp_cert_identifier}.pem"
 
+    return_value = True
+
     try:
         response = s.post(jobs_url, headers=headers, timeout=10, json=job_payload)
 
