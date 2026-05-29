@@ -23,14 +23,14 @@
     "DataStores": {
         "S3": {
             "Endpoint": "https://s3.us-east-005.backblazeb2.com",
-            "Bucket": "faasrBucket1234",
+            "Bucket": "faasrBucket5678",
             "Region": "us-east-1"
         }
     },
     "ActionList": {
         "bowtie2-build-id0000001": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 15.985,
@@ -155,7 +155,7 @@
         },
         "bowtie2-id0000007": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 77.388,
@@ -385,7 +385,7 @@
         },
         "fasterq-dump-id0000018": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 80.421,
@@ -426,7 +426,7 @@
         },
         "fasterq-dump-id0000020": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "R",
             "Arguments": {
                 "execution_time": 105.96,
@@ -467,7 +467,7 @@
         },
         "merge-id0000022": {
             "FunctionName": "synthetic_faas_function",
-            "FaaSServer": "K8s",
+            "FaaSServer": "GH",
             "Type": "Python",
             "Arguments": {
                 "execution_time": 0.132,
@@ -528,13 +528,13 @@
         }
     },
     "ActionContainers": {
-        "bowtie2-build-id0000001": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "bowtie2-build-id0000001": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:1",
         "fasterq-dump-id0000002": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:1",
         "bowtie2-id0000003": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
         "fasterq-dump-id0000004": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:1",
         "bowtie2-id0000005": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:1",
         "fasterq-dump-id0000006": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:1",
-        "bowtie2-id0000007": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "bowtie2-id0000007": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:1",
         "fasterq-dump-id0000008": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
         "bowtie2-id0000009": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:1",
         "fasterq-dump-id0000010": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:1",
@@ -545,11 +545,11 @@
         "bowtie2-id0000015": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
         "fasterq-dump-id0000016": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:1",
         "bowtie2-id0000017": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
-        "fasterq-dump-id0000018": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:1",
+        "fasterq-dump-id0000018": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:1",
         "bowtie2-id0000019": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
-        "fasterq-dump-id0000020": "ghcr.io/jackkammerer/test_kubernetes_r_faasr_test:1",
+        "fasterq-dump-id0000020": "ghcr.io/jackkammerer/test_github-actions_r_faasr_test:1",
         "bowtie2-id0000021": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
-        "merge-id0000022": "ghcr.io/jackkammerer/test_kubernetes_python_faasr_test:1",
+        "merge-id0000022": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:1",
         "start202854885": "ghcr.io/jackkammerer/test_github-actions_python_faasr_test:1"
     },
     "FunctionGitRepo": {
