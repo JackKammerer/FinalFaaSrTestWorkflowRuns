@@ -2,7 +2,7 @@
     "ComputeServers": {
         "GH": {
             "FaaSType": "GitHubActions",
-            "UseSecretStore": true,
+            "UseSecretStore": false,
             "UserName": "JackKammerer",
             "ActionRepoName": "FinalFaaSrTestWorkflowRuns",
             "Branch": "main"
